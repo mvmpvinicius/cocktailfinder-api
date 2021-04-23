@@ -24,16 +24,14 @@ class Cocktail extends Model
         $this->apiCocktailUrl = config('app.api_cocktail_url');
     }
 
-        
     /**
      * It gets cocktails according to provided parameters
      *
      * @param  string $searchFor
      * @param  string $params
-     * @param  string $searchBy
      * @return mixed
      */
-    public function getCocktails($searchFor, $params, $searchBy = '')
+    public function getCocktails($searchFor, $params)
     {
         $apiUrl = $this->apiCocktailUrl;
 
@@ -46,9 +44,9 @@ class Cocktail extends Model
         }
 
         /**
-         * It gets detailed cocktails
+         * It gets detailed cocktails instructions by ingredient
          */
-        if ($searchFor === 'cocktails' && $searchBy === 'ingredient') {
+        if ($searchFor === 'cocktails') {
             $apiUrl .= 'filter.php?i=' . $params;
 
             $cocktails = Http::get($apiUrl);

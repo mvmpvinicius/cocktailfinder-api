@@ -38,20 +38,14 @@ class CocktailController extends Controller
             'search-for' => 'required|max:255',
         ]);
 
-        $searchBy = $request['search-by'] ? $request['search-by'] : '';
-
         /**
          * Get cocktails with search by, search for and parameters
          */
         $resCocktails = $this->cocktail->getCocktails(
             $validatedParams['search-for'],
             $validatedParams['params'],
-            $searchBy
         );
 
-        return $resCocktails;
-
-        // return response()->json(['status' => 'success', 'data' => $resCocktails], 200);
-        // return response()->json(['status' => 'failed', 'data' => $resCocktails], 400);
+        return response()->json(['data' => $resCocktails]);
     }
 }
