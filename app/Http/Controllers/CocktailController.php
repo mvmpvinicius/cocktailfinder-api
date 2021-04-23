@@ -50,6 +50,6 @@ class CocktailController extends Controller
             $validatedParams['params'],
         );
 
-        return response()->json(['data' => $resCocktails]);
+        return response()->json([$resCocktails]);
     }
 }
