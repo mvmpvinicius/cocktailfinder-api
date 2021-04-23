@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cocktail;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CocktailController extends Controller
 {    
@@ -35,7 +36,10 @@ class CocktailController extends Controller
     {
         $validatedParams = $request->validate([
             'params'     => 'required|max:255',
-            'search-for' => 'required|max:255',
+            'search-for' => [
+                'required',
+                Rule::in(['cocktails', 'ingredients']),
+            ],
         ]);
 
         /**
