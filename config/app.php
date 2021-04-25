@@ -230,4 +230,9 @@ return [
 
     ],
 
+    /**
+     * Customized config variables
+     */
+    'api_cocktail_url' => env('API_COCKTAIL_URL', ''),
+
 ];
