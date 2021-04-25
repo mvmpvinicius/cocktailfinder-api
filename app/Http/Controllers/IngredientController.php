@@ -34,7 +34,7 @@ class IngredientController extends Controller
     public function index(Request $request)
     {
         $validatedParams = $request->validate([
-            'params'     => 'required|max:255',
+            'params' => 'required|max:255',
         ]);
 
         /**
