@@ -52,9 +52,11 @@ class Cocktail extends Model
             $cocktails = Http::get($apiUrl);
             $result = array();
 
-            foreach ($cocktails['drinks'] as $drink) {
-                $apiUrl = $this->apiCocktailUrl . 'lookup.php?i=' . $drink['idDrink'];
-                $result[] = Http::get($apiUrl)['drinks'];
+            if (isset($cocktails['drinks'])) {
+                foreach ($cocktails['drinks'] as $drink) {
+                    $apiUrl = $this->apiCocktailUrl . 'lookup.php?i=' . $drink['idDrink'];
+                    $result[] = Http::get($apiUrl)['drinks'];
+                }
             }
         }
 
