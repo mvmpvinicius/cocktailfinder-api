@@ -27,36 +27,25 @@ class Cocktail extends Model
     /**
      * It gets cocktails according to provided parameters
      *
-     * @param  string $searchFor
      * @param  string $params
      * @return mixed
      */
-    public function getCocktails($searchFor, $params)
+    public function getCocktails($params)
     {
         $apiUrl = $this->apiCocktailUrl;
 
         /**
-         * It gets ingredients by text
-         */
-        if ($searchFor === 'ingredients') {
-            $apiUrl .= 'search.php?i=' . $params;
-            $result = Http::get($apiUrl)['ingredients'];
-        }
-
-        /**
          * It gets detailed cocktails instructions by ingredient
          */
-        if ($searchFor === 'cocktails') {
-            $apiUrl .= 'filter.php?i=' . $params;
+        $apiUrl .= 'filter.php?i=' . $params;
 
-            $cocktails = Http::get($apiUrl);
-            $result = array();
+        $cocktails = Http::get($apiUrl);
+        $result = array();
 
-            if (isset($cocktails['drinks'])) {
-                foreach ($cocktails['drinks'] as $drink) {
-                    $apiUrl = $this->apiCocktailUrl . 'lookup.php?i=' . $drink['idDrink'];
-                    $result[] = Http::get($apiUrl)['drinks'];
-                }
+        if (isset($cocktails['drinks'])) {
+            foreach ($cocktails['drinks'] as $drink) {
+                $apiUrl = $this->apiCocktailUrl . 'lookup.php?i=' . $drink['idDrink'];
+                $result[] = Http::get($apiUrl)['drinks'];
             }
         }
 

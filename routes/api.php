@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CocktailController;
+use App\Http\Controllers\IngredientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('cocktails', [CocktailController::class, 'index'])->name('cocktail.index');
+Route::get('ingredients', [IngredientController::class, 'index'])->name('ingredient.index');

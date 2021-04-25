@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cocktail;
+use App\Models\Ingredient;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-class CocktailController extends Controller
+class IngredientController extends Controller
 {    
     /**
-     * cocktail
+     * ingredient
      *
-     * @var string $cocktail
+     * @var string $ingredient
      */
-    private $cocktail;
+    private $ingredient;
         
     /**
      * __construct
@@ -21,9 +21,9 @@ class CocktailController extends Controller
      * @return void
      */
     public function __construct(
-        Cocktail $cocktail
+        Ingredient $ingredient
     ) {
-        $this->cocktail = $cocktail;
+        $this->ingredient = $ingredient;
     }
 
     /**
@@ -38,12 +38,12 @@ class CocktailController extends Controller
         ]);
 
         /**
-         * Get cocktails with search by, search for and parameters
+         * Get ingredients with the parameters
          */
-        $resCocktails = $this->cocktail->getCocktails(
+        $resIngredients = $this->ingredient->getIngredients(
             $validatedParams['params'],
         );
 
-        return response()->json([$resCocktails]);
+        return response()->json([$resIngredients]);
     }
 }
